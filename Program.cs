@@ -4,42 +4,63 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _2DArrayFunction
+namespace Inagram
 {
     class Program
     {
         static void Main(string[] args)
         {
             Program p = new Program();
-            dynamic[] arr = { "a",2,"c","d","e","f","g",1,2};
-            p.ArrayInsert(arr,2);
-            Console.ReadLine();
+            p.Inagram("abcd","abcd");
+            int[] arr = { 10, 1, 8, 4, 5, 6 };
+            p.ArrayMax(arr);
+            Console.ReadKey();
         }
-        public void ArrayInsert(dynamic[] arr,int size)
+        public void ArrayMax( int[] value)
         {
-            int c = 0;
-            int ds = ((arr.Length) / size)+((Convert.ToDecimal(arr.Length) % size) > 0 ? 1 : 0);
-            dynamic[,] darr = new dynamic[ds, size];
-            for (int i = 0; i < darr.GetLength(0); i++)
+            int mv=int.MinValue;
+            foreach (var item in value)
             {
-                if (c < arr.Length)
+                if (mv<item)
                 {
-                    for (int j = 0; j < darr.GetLength(1); j++)
+                    mv = item;
+                }
+            }
+            Console.Write(mv);
+        }
+        public void Inagram(string A, string B)
+        {
+            string sb = "Anagram true !";
+            int acount=0,bcount=0;
+            string[] arr, brr;
+
+            foreach(var a in A)
+            {
+                if (acount==bcount&& A.Length==B.Length)
+	            {
+		 
+                    foreach (var aa in A)
                     {
-                        if (arr.ElementAtOrDefault(c) != null)
-                        {
-                            dynamic val = arr[c];
-                            if (darr[i, j] == null)
-                                darr[i, j] = val;
-                        }
-                        c++;
-                        Console.Write(darr[i, j]+"\t");
+                        if (a==aa)
+	                    {
+		                    acount++;
+	                    }
                     }
-                    Console.WriteLine();
+                    foreach (var b in B)
+	                {
+                            if (a==b)
+	                        {
+		                        bcount++;
+	                        }
+	                }   
                 }
                 else
-                    break;
+                {
+                    sb = "Anagram False !";
+                }
             }
+
+            Console.Write(sb);
         }
     }
 }
